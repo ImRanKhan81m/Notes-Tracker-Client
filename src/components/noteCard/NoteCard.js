@@ -10,7 +10,7 @@ const customStyles = {
   width: "80px",
 };
 
-const NoteCard = ({ note }) => {
+const NoteCard = ({ note, handleDelete,isReload,setIsReload }) => {
 
 
   return (
@@ -22,16 +22,17 @@ const NoteCard = ({ note }) => {
         >
           <p className="text-center p-2  fs-2 fw-bold text-dark">
             {" "}
-            {note.user_name.substring(0, 1)}
+            {note.userName.substring(0, 1)}
           </p>
         </div>
         <div className="card-body mt-5">
-          <h5 className="card-title">Author : {note.user_name}</h5>
-          <p className="card-text">{note.text}</p>
+          <h5 className="card-title">Author : {note.userName}</h5>
+          <p className="card-text">{note.textData}</p>
         </div>
         <div className="card-footer d-flex justify-content-center">
           <div>
             <button
+            onClick={()=>handleDelete(note._id)}
               className="color-801336 btn btn-sm mx-2 "
               
             >
@@ -39,7 +40,7 @@ const NoteCard = ({ note }) => {
             </button>
           </div>
           {/* <button>update</button> */}
-          <UpdateModal  />
+          <UpdateModal setIsReload={setIsReload} isReload={isReload} id={note._id} />
         </div>
       </div>
     </div>
